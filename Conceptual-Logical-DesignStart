@@ -1,0 +1,55 @@
+My business would be a government contracted agency that tracks the global movement of conventional arms transactions and shipments.
+
+My relational database conceptual/logical design thus far would utilize a RDBMS such as PostgreSQL. I have experience manipulating data via Pg4Admin, but I am interested in learning how to create the ERD and build out relationships with Crow’s Foot notation (if supported).
+ 
+I have to stop myself from going down the rabbit hole because the assignment doesn’t say to identify relationships, construct the ERD, or normalize (which I try to do initially when determining attributes) but it feels incomplete and that just doesn't sit right. Possibly building upon this initial concept next week.
+ 
+I also think it’s important to identify that I would start out by taking a design thinking approach to go above and beyond JUST a tracking system and really deliver a solution-based product for data teams and end-users when determining entities and attributes for this design. This could only be done by potential client collaboration. What good are used up resources of time and labor if the database created is not going to support the needs of the end-user? No good. … that should’ve been your answer. :P
+
+I created a link table 'ORDER_DETAILS' remedying the M:N relationship between WEAPONS and ORDERS. This table allows for several different types of weapons to be attached to an Order_ID, versus an attribute redundancy within the ORDER entity.
+ 
+Government Contracted Global Tracking Agency of Conventional Arms Dealings Database
+ 
+WEAPONS
+Weapon_ID PK
+MFR
+Type
+Unit_Weight
+MFR Date
+Munition_Type
+ 
+SUPPLIERS
+Sup_ID PK
+Sup_Name
+Sup_Location
+Sup_POC
+Sup_Phone
+ 
+RECIPIENTS
+Recipient_ID PK
+Rec_Name
+Rec_Location
+Rec_POC
+Rec_Phone
+
+SHIPPING_VENDOR
+Vendor_ID PK
+Ven_Name
+HQ_Location
+ 
+ORDER_DETAILS
+Order_ID FK <PF>
+Weapon_ID FK <PF>
+Quantity
+Total_Wt
+ 
+ORDER
+Order_ID PK
+Order_Date
+Sup_ID FK
+Recipient_ID FK
+Vendor_ID FK
+Ship_Date
+Sum_Total_Wt
+Ship_Cost
+Total_Price
